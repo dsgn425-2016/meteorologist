@@ -1,5 +1,4 @@
 require 'open-uri'
-require 'json'
 
 class GeocodingController < ApplicationController
   def street_to_coords_form

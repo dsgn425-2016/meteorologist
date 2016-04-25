@@ -17,7 +17,7 @@ class MeteorologistController < ApplicationController
     #   characters removed, is in the string url_safe_street_address.
     # ==========================================================================
 
-
+    
 
     @current_temperature = "Replace this string with your answer."
 
