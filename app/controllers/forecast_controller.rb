@@ -16,7 +16,7 @@ class ForecastController < ApplicationController
     # The longitude the user input is in the string @lng.
     # ==========================================================================
 
-
+    
 
     @current_temperature = "Replace this string with your answer."
 
