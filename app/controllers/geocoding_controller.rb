@@ -18,12 +18,8 @@ class GeocodingController < ApplicationController
     # ==========================================================================
 
 
-    require 'open-uri'
-    url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + "#{url_safe_street_address}"
-    open(url)
-    raw_data = open(url).read
-    require 'json'
-    parsed_data = JSON.parse(raw_data)
+    new_url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + "#{url_safe_street_address}"
+    parsed_data = JSON.parse(open(new_url).read)
 
     @latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
     @longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
