@@ -9,13 +9,15 @@ class ForecastController < ApplicationController
   def coords_to_weather
     @lat = params[:user_latitude]
     @lng = params[:user_longitude]
-    url_safe_lat = URI.encode(@lat)
-    url_safe_lng = URI.encode(@lng)
+  
     # ==========================================================================
     # Your code goes below.
     # The latitude the user input is in the string @lat.
     # The longitude the user input is in the string @lng.
     # ==========================================================================
+    url_safe_lat = URI.encode(@lat)
+    url_safe_lng = URI.encode(@lng)
+
 url_forecast = "https://api.forecast.io/forecast/3bd9a37be0723c4c319f96b0e7e2c63e/"+url_safe_lat + "," + url_safe_lng
 
 require 'json'
