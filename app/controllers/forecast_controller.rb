@@ -17,16 +17,18 @@ class ForecastController < ApplicationController
     # ==========================================================================
 
 
+    new_url_weather = "https://api.forecast.io/forecast/f099199e037ae58c402f9dbca74a0a5e/"+@lat+","+@lng
+    parsed_data_weather = JSON.parse(open(new_url_weather).read)
 
-    @current_temperature = "Replace this string with your answer."
+    @current_temperature = parsed_data_weather["currently"]["temperature"]
 
-    @current_summary = "Replace this string with your answer."
+    @current_summary = parsed_data_weather["currently"]["summary"]
 
-    @summary_of_next_sixty_minutes = "Replace this string with your answer."
+    @summary_of_next_sixty_minutes = parsed_data_weather["minutely"]["summary"]
 
-    @summary_of_next_several_hours = "Replace this string with your answer."
+    @summary_of_next_several_hours = parsed_data_weather["hourly"]["summary"]
 
-    @summary_of_next_several_days = "Replace this string with your answer."
+    @summary_of_next_several_days = parsed_data_weather["daily"]["summary"]
 
     render("coords_to_weather.html.erb")
   end
