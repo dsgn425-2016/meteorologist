@@ -15,7 +15,7 @@ class ForecastController < ApplicationController
     # The latitude the user input is in the string @lat.
     # The longitude the user input is in the string @lng.
     # ==========================================================================
-require 'open-uri'
+    require 'open-uri'
     url_forecast = "https://api.forecast.io/forecast/4c161d79ae009ea2445d7191e4a6f2cc/" + @lat.to_s + "," + @lng.to_s
     require 'json'
     parsed_data1 = JSON.parse(open(url_forecast).read)
