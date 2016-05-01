@@ -1,10 +1,16 @@
-<h1>Street &rarr; Coords Lookup</h1>
+<div class="container-fluid">
+  <h1>Street &rarr; Coords Lookup</h1>
 
 <form action="/street_to_coords">
-  <div>
-    <label for="the_address">Street Address</label>
-    <input type="text" name="user_street_address" id="the_address">
-  </div>
 
-  <button>Lookup Coordinates</button>
+
+  <div class="input-group" style="width: 40%">
+    <span class="input-group-addon" id="basic-addon3">Street Address</span>
+    <input type="text" class="form-control" name="user_street_address" id="the_address" aria-describedby="basic-addon3">
+  </div>
+  <br>
+
+  <button class="btn btn-primary btn-block" type="submit" style="width: 15%">Lookup Coordinates</button>
+
 </form>
+</div>

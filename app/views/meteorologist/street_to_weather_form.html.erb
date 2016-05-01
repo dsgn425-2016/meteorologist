@@ -1,12 +1,16 @@
-<h1>Meteorologist</h1>
+<div class="container-fluid">
+  <h1>Meteorologist</h1>
 
-<p>Where are you?</p>
+  <p>Where are you?</p>
+  <form action="/street_to_weather">
 
-<form action="/street_to_weather">
-  <div>
-    <label for="the_address">Street Address</label>
-    <input type="text" name="user_street_address" id="the_address">
-  </div>
+    <div class="input-group" style="width: 40%">
+      <span class="input-group-addon" id="basic-addon-1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+      <input type="text" class="form-control" placeholder="Street address" name="user_street_address" id="the_address" aria-describedby="basic-addon1">
+    </div>
+    <br>
 
-  <button>Tell me the weather!</button>
-</form>
+    <button class="btn btn-primary btn-block" type="submit" style="width: 15%">Tell me the weather!</button>
+
+  </form>
+</div>
