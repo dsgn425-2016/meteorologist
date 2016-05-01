@@ -17,17 +17,28 @@ class MeteorologistController < ApplicationController
     #   characters removed, is in the string url_safe_street_address.
     # ==========================================================================
 
+    require 'json'
 
+    url = ('https://maps.googleapis.com/maps/api/geocode/json?&address=' + url_safe_street_address)
 
-    @current_temperature = "Replace this string with your answer."
+    parsed_data = JSON.parse(open(url).read)
 
-    @current_summary = "Replace this string with your answer."
+        @latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
+        @longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
 
-    @summary_of_next_sixty_minutes = "Replace this string with your answer."
+    url_temp = ('https://api.forecast.io/forecast/6aca433c8de67026e4290617d0ed8b61/' + @latitude.to_s + "," +  @longitude.to_s)
 
-    @summary_of_next_several_hours = "Replace this string with your answer."
+    parsed_data_temp = JSON.parse(open(url_temp).read)
 
-    @summary_of_next_several_days = "Replace this string with your answer."
+    @current_temperature = parsed_data_temp["currently"]["temperature"]
+
+    @current_summary = parsed_data_temp["currently"]["summary"]
+
+    @summary_of_next_sixty_minutes = parsed_data_temp["minutely"]["summary"]
+
+    @summary_of_next_several_hours = parsed_data_temp["hourly"]["summary"]
+
+    @summary_of_next_several_days = parsed_data_temp["daily"]["summary"]
 
     render("street_to_weather.html.erb")
   end
