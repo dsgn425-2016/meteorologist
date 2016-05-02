@@ -29,16 +29,16 @@ class ForecastController < ApplicationController
 
     # url = "https://api.forecast.io/forecast/71450c71080f36de39fd4cfe1f9a60cd/"+@lat.to_s+","+@lng.to_s
 
-    # url = "https://api.forecast.io/forecast/79949523716c2e151a22ed58fc66708f/" + @lat.to_s + "," + @lng.to_s
-    # parsed_data1 = JSON.parse(open(url).read)
+    url = "https://api.forecast.io/forecast/79949523716c2e151a22ed58fc66708f/" + @lat.to_s + "," + @lng.to_s
+    parsed_data1 = JSON.parse(open(url).read)
 
 
 
 
-    # ------------Works----------------
-    url_forecast = "https://api.forecast.io/forecast/4c161d79ae009ea2445d7191e4a6f2cc/" + @lat.to_s + "," + @lng.to_s
-
-    parsed_data1 = JSON.parse(open(url_forecast).read)
+    # ------------Worked for a second...----------------
+    # url_forecast = "https://api.forecast.io/forecast/4c161d79ae009ea2445d7191e4a6f2cc/" + @lat.to_s + "," + @lng.to_s
+    #
+    # parsed_data1 = JSON.parse(open(url_forecast).read)
 
     @current_temperature = parsed_data1["currently"]["temperature"]
 
