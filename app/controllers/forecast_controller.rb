@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'JSON'
+require 'json'
 
 class ForecastController < ApplicationController
   def coords_to_weather_form

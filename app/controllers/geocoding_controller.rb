@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 class GeocodingController < ApplicationController
 
-  
+
   def street_to_coords_form
     # Nothing to do here.
     render("street_to_coords_form.html.erb")
