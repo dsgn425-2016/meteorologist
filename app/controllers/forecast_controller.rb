@@ -12,7 +12,7 @@ class ForecastController < ApplicationController
 
 lat_safe = URI.encode(@lat)
 lng_safe = URI.encode(@lng)
-url = "https://api.forecast.io/forecast/6bcf700d56276bc129251de95aa5c558/"+lat_safe+","+lng_safe
+url = "https://api.forecast.io/forecast/6bcf700d56276bc129251de95aa5c558/"+lat_safe.to_s+","+lng_safe.to_s
 
 parsed_data = JSON.parse(open(url).read)
     # ==========================================================================

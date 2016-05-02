@@ -11,7 +11,7 @@ class MeteorologistController < ApplicationController
     url_safe_street_address = URI.encode(@street_address)
 
     url_safe_street_address = URI.encode(@street_address) #this takes out spaces
-    raw_url ="http://maps.googleapis.com/maps/api/geocode/json?address=the+corner+of+Foster+and+Sheridan"+url_safe_street_address+"&sensor=false"
+    raw_url ="http://maps.googleapis.com/maps/api/geocode/json?address="+url_safe_street_address+"&sensor=false"
 
     parsed_data = JSON.parse(open(raw_url).read)
     latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
