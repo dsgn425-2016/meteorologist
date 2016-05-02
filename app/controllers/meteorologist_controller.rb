@@ -26,7 +26,7 @@ class MeteorologistController < ApplicationController
 
     @longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
 
-    url_forecast= "https://api.forecast.io/forecast/3bd9a37be0723c4c319f96b0e7e2c63e/"+@latitude + "," + @longitude
+    url_forecast= "https://api.forecast.io/forecast/3bd9a37be0723c4c319f96b0e7e2c63e/#{@latitude},#{@longitude}"
 
     parsed_data_2 = JSON.parse(open(url_forecast).read)
 
