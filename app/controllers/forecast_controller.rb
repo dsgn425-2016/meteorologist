@@ -18,7 +18,7 @@ class ForecastController < ApplicationController
 
     # url =  "https://api.forecast.io/forecast/71450c71080f36de39fd4cfe1f9a60cd/"+@lat+","+@lng
 
-    # url = "https://api.forecast.io/forecast/79949523716c2e151a22ed58fc66708f/#{@lat},#{@lng}"
+
     #
     # parsed_data = JSON.parse(open(url).read)
 
@@ -27,19 +27,28 @@ class ForecastController < ApplicationController
 
     # darkdata = open(url).read
 
-    url = "https://api.forecast.io/forecast/71450c71080f36de39fd4cfe1f9a60cd/"+@lat+","+@lng
-   parsed_data = JSON.parse(open(url).read)
+    # url = "https://api.forecast.io/forecast/71450c71080f36de39fd4cfe1f9a60cd/"+@lat.to_s+","+@lng.to_s
+
+    # url = "https://api.forecast.io/forecast/79949523716c2e151a22ed58fc66708f/" + @lat.to_s + "," + @lng.to_s
+    # parsed_data1 = JSON.parse(open(url).read)
 
 
-    # @current_temperature = darkdata["currently"]["time"]
 
-    @current_summary = "Replace this string with your answer."
 
-    @summary_of_next_sixty_minutes = "Replace this string with your answer."
+    # ------------Works----------------
+    url_forecast = "https://api.forecast.io/forecast/4c161d79ae009ea2445d7191e4a6f2cc/" + @lat.to_s + "," + @lng.to_s
 
-    @summary_of_next_several_hours = "Replace this string with your answer."
+    parsed_data1 = JSON.parse(open(url_forecast).read)
 
-    @summary_of_next_several_days = "Replace this string with your answer."
+    @current_temperature = parsed_data1["currently"]["temperature"]
+
+    @current_summary = parsed_data1["currently"]["summary"]
+
+    @summary_of_next_sixty_minutes = parsed_data1["minutely"]["summary"]
+
+    @summary_of_next_several_hours = parsed_data1["hourly"]["summary"]
+
+    @summary_of_next_several_days = parsed_data1["daily"]["summary"]
 
     render("coords_to_weather.html.erb")
   end
