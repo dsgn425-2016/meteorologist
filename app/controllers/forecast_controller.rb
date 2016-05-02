@@ -27,7 +27,11 @@ parsed_data = JSON.parse(open(url).read)
 
     @current_summary = parsed_data["currently"]["summary"]
 
+    if parsed_data["minutely"].nil?
+    @summary_of_next_sixty_minutes="No data"
+    else
     @summary_of_next_sixty_minutes = parsed_data["minutely"]["summary"]
+    end
 
     @summary_of_next_several_hours = parsed_data["hourly"]["summary"]
 
