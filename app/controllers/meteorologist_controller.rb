@@ -1,4 +1,4 @@
-require 'openuri'
+require 'open-uri'
 
 class MeteorologistController < ApplicationController
   def street_to_weather_form
@@ -15,28 +15,27 @@ class MeteorologistController < ApplicationController
     # The street address the user input is in the string @street_address.
     # A URL-safe version of the street address, with spaces and other illegal
     #   characters removed, is in the string url_safe_street_address.
-    # =======================================================================+    api_url = "http://maps.googleapis.com/maps/api/geocode/json?address= #{url_safe_street_address}"
-api_url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + url_safe_street_address
+    # ==========================================================================
+    url_street="http://maps.googleapis.com/maps/api/geocode/json?address="+url_safe_street_address
 
-    parsed_data = JSON.parse(open(api_url).read)
+    parsed_street_data=JSON.parse(open(url_street).read)
 
-    @latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
+    @latitude = parsed_street_data["results"][0]["geometry"]["location"]["lat"].to_s
+    @longitude = parsed_street_data["results"][0]["geometry"]["location"]["lng"].to_s
 
-    @longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
+    url_forecast="https://api.forecast.io/forecast/1c2b812f85ea7d1d663a18c5097306a2/"+@latitude+","+@longitude
 
-    api_url = "https://api.forecast.io/forecast/411cdc838a82f9c7154f4ca2f94aa4a0/" + @latitude.to_s + "," +@longitude.to_s
+    parsed_forecast_data=JSON.parse(open(url_forecast).read)
 
-    parsed_data_forecast = JSON.parse(open(api_url).read)
+    @current_temperature = parsed_forecast_data["currently"]["temperature"]
 
-    @current_temperature = parsed_data_forecast["currently"]["temperature"]
+    @current_summary = parsed_forecast_data["currently"]["summary"]
 
-    @current_summary = parsed_data_forecast["currently"]["summary"]
+    @summary_of_next_sixty_minutes = parsed_forecast_data["minutely"]["summary"]
 
-    @summary_of_next_sixty_minutes = parsed_data_forecast["minutely"]["summary"]
+    @summary_of_next_several_hours = parsed_forecast_data["hourly"]["summary"]
 
-    @summary_of_next_several_hours = parsed_data_forecast["hourly"]["summary"]
-
-    @summary_of_next_several_days =  parsed_data_forecast["daily"]["summary"]
+    @summary_of_next_several_days = parsed_forecast_data["daily"]["summary"]
 
     render("street_to_weather.html.erb")
   end
