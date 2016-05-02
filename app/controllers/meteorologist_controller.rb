@@ -17,9 +17,13 @@ class MeteorologistController < ApplicationController
     #   characters removed, is in the string url_safe_street_address.
     # ==========================================================================
 
+url = "https://api.forecast.io/forecast/79949523716c2e151a22ed58fc66708f/ #{latitude}","#{longitude}"
 
+parsed_data = JSON.parse(open(url).read)
 
-    @current_temperature = "Replace this string with your answer."
+# @latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
+
+    @current_temperature = parsed_data["currently"]["time"]
 
     @current_summary = "Replace this string with your answer."
 
