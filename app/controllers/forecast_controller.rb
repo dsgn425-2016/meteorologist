@@ -15,8 +15,10 @@ class ForecastController < ApplicationController
     # The latitude the user input is in the string @lat.
     # The longitude the user input is in the string @lng.
     # ==========================================================================
-
-
+    require "JSON"
+    url = "https://api.forecast.io/forecast/1e6df356aabe300b443cdd5ed5c173d3/json?address=#{user_latitude user_longitude}"
+    parsed_data = JSON.parse(open(url).read)
+    results = parsed_data["results"]
 
     @current_temperature = "Replace this string with your answer."
 
