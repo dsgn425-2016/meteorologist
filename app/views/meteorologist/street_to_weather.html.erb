@@ -1,6 +1,12 @@
 <h1>Meteorologist</h1>
 
 <p>Here's the outlook for <%= @street_address %>:</p>
+<p>Latitude: <%= @latitude %></p>
+<p>Longitude: <%= @longitude %></p>
+<p>Street Number: <%= @street_number %></p>
+<p>Street Rose: <%= @street_rose %></p>
+<p>Street Name: <%= @street_name %></p>
+<p>Street Suffix: <%= @street_suffix %></p>
 
 <dl>
   <dt>Current Temperature</dt>
@@ -18,3 +24,5 @@
   <dt>Outlook for next several days</dt>
   <dd><%= @summary_of_next_several_days %></dd>
 </dl>
+<p>Integer Test: <%= @apt_test %>
+  
