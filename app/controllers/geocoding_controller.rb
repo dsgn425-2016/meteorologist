@@ -7,7 +7,7 @@ class GeocodingController < ApplicationController
   end
 
   def street_to_coords
-    @street_address = params[:user_street_address]
+    @street_address = params[:address]
     @url_safe_street_address = URI.encode(@street_address)
 
     # ==========================================================================
@@ -24,7 +24,9 @@ require 'json'
     @latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
     @longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
 
+    @street_number = parsed_data["results"][0]["address_components"][0]["long_name"]   
 
-    render("street_to_coords.html.erb")
+
+    render("show.html.erb")
   end
 end
